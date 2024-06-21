@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    let NFTs = [];
+  
+  function mint(title, artist, creationDate, owner, price, description) {
+  const nft = {
+  title: title,
+  artist: artist,
+  creationDate: creationDate,
+  owner: owner,
+  price: price,
+  description: description
+  };
+  NFTs.push(nft);
+  }
+  
+  function display() {
+  console.log("Your Digital Art NFTs:");
+  for (let i = 0; i < NFTs.length; i++) {
+  const nft = NFTs[i];
+  console.log("Title:", nft.title);
+  console.log("Artist:", nft.artist);
+  console.log("Creation Date:", nft.creationDate);
+  console.log("Owner:", nft.owner);
+  console.log("Price:", nft.price);
+  console.log("Description:", nft.description);
+  console.log("\n\n");
+  }
+  }
+  
+  function totalNFTs(){
+  return NFTs.length;
+  }
+  
+  // Mint some NFTs
+  mint("Starry Night", "Vincent van Gogh", "1889", "Alice", 1000000, "A masterpiece of post-impressionism.");
+  mint("Mona Lisa", "Leonardo da Vinci", "1503", "Bob", 2000000, "A portrait of Lisa Gherardini.");
+  mint("The Persistence of Memory", "Salvador Dalí", "1931", "Charlie", 500000, "A surreal landscape with melting clocks.");
+  mint("The Scream", "Edvard Munch", "1893", "Dave", 750000, "An expressionist depiction of existential angst.");
+  mint("Girl with a Pearl Earring", "Johannes Vermeer", "1665", "Eve", 600000, "A tronie of a girl with an exotic dress and a pearl earring.");
+  mint("Guernica", "Pablo Picasso", "1937", "Frank", 3000000, "A powerful political statement on the horrors of war.");
+  mint("The Birth of Venus", "Sandro Botticelli", "1486", "Grace", 1500000, "A depiction of the goddess Venus emerging from the sea.");
+  
+  display();
+  
+  const totNfts = totalNFTs();
+  console.log("Total NFTs: " + totNfts);
+
+</script>
+</body>
