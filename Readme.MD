@@ -1,16 +1,54 @@
 MyToken
+
 This solidity program aims at demonstrating the functionality of Tokens using the basic variables and functions of the Solidity programming language.
 
 Description
+
 This program is a simple contract written in Solidity. Solidity is a programming language used for developing smart contracts on the Ethereum blockchain. The contract has functions like mint and burn. Mint function is used to increase the total supply by the number passed and increases the balance of the address by that amount. Burn function is used to decrease the total supply by the number passed and decreases the balance of the address by that amount.
 
 Getting Started
+
 Executing program
+
 To run this program, you can use Remix, an online Solidity IDE. To get started, go to the Remix website at https://remix.ethereum.org/.
 
 Once you are on the Remix website, create a new file by clicking on the "+" icon in the left-hand sidebar. Save the file with a .sol extension (e.g., Project.sol). Copy and paste the following code into the file:
 
+pragma solidity >=0.6.12 <0.9.0;
 
+contract MyToken {
+    string public tokenName = "META";
+    string public tokenAbbrv = "MTA";
+    uint public totalSupply = 0;
+    address public owner;
+
+    mapping(address => uint) public balances;
+    event Mint(address indexed to, uint value);
+    event Burn(address indexed from, uint value);
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Only the owner can perform this action");
+        _;
+    }
+
+ 
+    constructor() {
+        owner = msg.sender;
+    }
+
+    
+    function mint(address _address, uint _value) public onlyOwner {
+        totalSupply += _value;            
+        balances[_address] += _value;     
+        emit Mint(_address, _value);      
+    }
+
+    function burn(address _address, uint _value) public onlyOwner {
+        require(balances[_address] >= _value, "Insufficient balance to burn"); 
+        totalSupply -= _value;        
+        balances[_address] -= _value;   
+        emit Burn(_address, _value);   
+    }
+}
 
 To compile the code, click on the "Solidity Compiler" tab in the left-hand sidebar. Make sure the "Compiler" option is set to "0.8.18", and then click on the "Compile Project.sol" button.
 
