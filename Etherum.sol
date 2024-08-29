@@ -1,4 +1,4 @@
-pragma solidity >=0.6.12 <0.9.0;
+pragma solidity ^0.8.0;
 
 contract MyToken {
     string public tokenName = "META";
@@ -32,7 +32,7 @@ contract MyToken {
         emit Burn(_address, _value);   
     }
 
-    // New function to check balance
+    // Function to check balance
     function balanceOf(address _address) public view returns (uint) {
         return balances[_address];
     }
