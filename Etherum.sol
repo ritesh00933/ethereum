@@ -9,17 +9,16 @@ contract MyToken {
     mapping(address => uint) public balances;
     event Mint(address indexed to, uint value);
     event Burn(address indexed from, uint value);
+
     modifier onlyOwner() {
         require(msg.sender == owner, "Only the owner can perform this action");
         _;
     }
 
- 
     constructor() {
         owner = msg.sender;
     }
 
-    
     function mint(address _address, uint _value) public onlyOwner {
         totalSupply += _value;            
         balances[_address] += _value;     
@@ -31,5 +30,10 @@ contract MyToken {
         totalSupply -= _value;        
         balances[_address] -= _value;   
         emit Burn(_address, _value);   
+    }
+
+    // New function to check balance
+    function balanceOf(address _address) public view returns (uint) {
+        return balances[_address];
     }
 }
